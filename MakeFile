@@ -19,9 +19,7 @@ kernel: $(kernelSrc)
 	$(LD) $(LDFLAGS) -o $(NAME) target/kernel.o target/header.o
 
 debug: kernel
-	$(GCC) $(CFLAGS) -o target/kernel.o -Dtag=Debug $(kernelPath)/main.c -g
-	$(GCC) $(CFLAGS) -o target/header.o $(kernelPath)/header.S -g
-	$(LD) $(LDFLAGS) -o $(NAME) target/kernel.o target/header.o
+	qemu-system-$(ARCH) -kernel kernel -serial stdio -S -s
 
 clean:
 	$(RM) target/* *.elf
