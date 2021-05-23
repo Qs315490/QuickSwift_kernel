@@ -25,10 +25,7 @@ multiboot_entry:
     pushl %ebx
     pushl %eax
 
-    /* 现在进入 C main 函数... */
-    call main
-
-loop: hlt
-    jmp loop  
+    /* 现在进入 内核启动 函数... */
+    call kernel_start
 
     .comm stack, STACK_SIZE
